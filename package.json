@@ -17,7 +17,7 @@
     "dev:game001": "npm run dev --workspace @play100/game-001-arrow-harbor",
     "dev:game002": "npm run dev --workspace @play100/game-002-harbor-lost-found",
     "build": "node scripts/build-all.mjs",
-    "check": "node scripts/validate-catalog.mjs && node scripts/validate-levels.mjs && npm run typecheck --workspaces --if-present",
+    "check": "node scripts/validate-catalog.mjs && node scripts/validate-levels.mjs && node scripts/validate-game-experience.mjs && npm run typecheck --workspaces --if-present",
     "test": "npm run check",
     "preview": "npx vite preview --outDir dist"
   },

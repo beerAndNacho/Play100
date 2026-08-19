@@ -1,0 +1,48 @@
+{
+  "id": 2,
+  "slug": "002-harbor-lost-found",
+  "title": "Harbor Lost & Found",
+  "status": "playable",
+  "themePromise": "항구 분실물 보관소 직원이 어시장·창고·부두·야간항·조선소를 수색해 신고된 물건을 제한 시간 안에 회수한다.",
+  "mechanicsToTheme": "숨은그림찾기의 대상은 실제 항구 분실물이며, 목표 목록은 수색 신고서, 힌트는 등대 탐조등, 결과는 분실물 회수 보고서로 표현한다.",
+  "coreVerbs": ["scan harbor scene", "identify lost object", "build find combo", "manage time and mistakes"],
+  "signatureObjects": [
+    "fish market crates",
+    "warehouse shelves",
+    "working pier",
+    "night harbor lights",
+    "shipyard equipment",
+    "life ring",
+    "rope coil",
+    "harbor lantern",
+    "ferry ticket",
+    "sailor cap",
+    "cargo hook",
+    "toolbox and wrench"
+  ],
+  "environments": [
+    "busy fish market",
+    "cargo warehouse",
+    "working ferry pier",
+    "night harbor",
+    "industrial shipyard"
+  ],
+  "feedback": [
+    "found-object stamp and removal",
+    "combo multiplier",
+    "wrong-click time and score penalty",
+    "lighthouse hint highlight",
+    "zoom controls for scene inspection",
+    "countdown and urgency state",
+    "scene weather and mission briefing",
+    "medal and recovery report"
+  ],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {
+    "onboardingSeconds": 10,
+    "firstSuccessSeconds": 75,
+    "restartSeconds": 1,
+    "sessionMinutes": "2-6",
+    "replayMotivators": ["five illustrated harbor cases", "combo score", "time medals", "daily case"]
+  }
+}

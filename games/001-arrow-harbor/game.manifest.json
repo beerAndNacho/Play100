@@ -1,0 +1,47 @@
+{
+  "id": 1,
+  "slug": "001-arrow-harbor",
+  "title": "Arrow Harbor",
+  "status": "playable",
+  "themePromise": "항만 관제사가 신호 부표를 회전시켜 화물선을 암초와 악천후 사이로 안전하게 입항시킨다.",
+  "mechanicsToTheme": "퍼즐의 방향 전환 장치는 항로 신호 부표이며, 실행 버튼은 출항 명령, 성공은 실제 부두 접안으로 표현한다.",
+  "coreVerbs": ["rotate signals", "inspect route", "launch vessel", "recover after failure"],
+  "signatureObjects": [
+    "signal buoy",
+    "cargo vessel",
+    "harbor basin",
+    "reef and coast cells",
+    "dock and quay",
+    "lighthouse beam",
+    "cargo manifest",
+    "harbor radio console",
+    "tide board",
+    "navigation wake",
+    "rain and fog",
+    "arrival flare"
+  ],
+  "environments": [
+    "dawn harbor channel",
+    "clear daytime industrial port",
+    "low-visibility mist harbor",
+    "night harbor with rain and lighthouse sweep"
+  ],
+  "feedback": [
+    "buoy bobbing and selection beam",
+    "animated sea and foam",
+    "cargo vessel wake",
+    "splash particles",
+    "reef collision shake",
+    "radio status messages",
+    "docking celebration",
+    "distinct action and result sound cues"
+  ],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {
+    "onboardingSeconds": 12,
+    "firstSuccessSeconds": 90,
+    "restartSeconds": 1,
+    "sessionMinutes": "3-8",
+    "replayMotivators": ["rotation par", "gold-silver-bronze medals", "12 harbor charts", "daily chart"]
+  }
+}
