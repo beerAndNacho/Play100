@@ -1,0 +1,56 @@
+name: Materialize GAME-003 through GAME-005
+
+on:
+  push:
+    branches: [games-003-005-worlds]
+    paths:
+      - '.github/workflows/materialize-games-003-005.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: materialize-games-003-005
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout working branch
+        uses: actions/checkout@v6
+        with:
+          ref: games-003-005-worlds
+
+      - name: Reconstruct source archive
+        run: |
+          cat staging/games-003-005.part00 \
+              staging/games-003-005.part01 \
+              staging/games-003-005.part02 \
+              staging/games-003-005.part03 \
+              staging/games-003-005.part04 \
+              staging/games-003-005.part05 \
+              staging/games-003-005.part06 \
+            | base64 --decode > staging/games-003-005.tar.gz
+          echo '6110e4d2320d76c15e6aca14a1ec6667479d1029869e780c56ce702390e6c063  staging/games-003-005.tar.gz' | sha256sum --check
+
+      - name: Expand games and connect portal
+        run: |
+          tar -xzf staging/games-003-005.tar.gz
+          python staging/apply_003_005.py
+
+      - name: Remove transport files
+        run: |
+          rm -f staging/games-003-005.part* staging/games-003-005.tar.gz
+          rm -f staging/apply_003_005.py
+          rmdir staging 2>/dev/null || true
+          rm -f .github/workflows/materialize-games-003-005.yml
+
+      - name: Commit materialized implementation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'feat: add GAME-003 through GAME-005 worlds'
+          git push origin HEAD:games-003-005-worlds
