@@ -1,0 +1,64 @@
+name: Apply GAME-003 to GAME-005 overlay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-games-003-005.yml'
+      - 'scripts/overlay-chunks/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-games-003-005
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Reconstruct and verify source overlay
+        run: |
+          cat scripts/overlay-chunks/part-* | base64 -d > /tmp/play100-games-003-005-overlay.zip
+          echo '8d2eb34c467080918b3a0df336786aed030ddc8e7db0cd24db669a9210c248e5  /tmp/play100-games-003-005-overlay.zip' | sha256sum -c -
+          mkdir -p /tmp/play100-overlay
+          unzip -q -o /tmp/play100-games-003-005-overlay.zip -d /tmp/play100-overlay
+          rsync -a /tmp/play100-overlay/ ./
+          rm -f APPLY.md
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Validate and build all playable games
+        run: |
+          npm run check
+          npm run build
+
+      - name: Remove temporary staging files
+        run: |
+          rm -rf scripts/overlay-chunks
+          rm -f .github/workflows/apply-games-003-005.yml
+
+      - name: Commit generated source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No source changes to commit.'
+            exit 0
+          fi
+          git commit -m 'feat: add GAME-003 through GAME-005'
+          git push
