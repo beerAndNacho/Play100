@@ -1,0 +1,88 @@
+.lost-found-map {
+  position: relative;
+  min-height: 252px;
+  overflow: hidden;
+  background:
+    linear-gradient(#eaa76e 0 38%, #2f7582 38% 64%, #9c704d 64% 100%);
+  border-top: 1px solid rgba(23, 26, 25, 0.22);
+  border-bottom: 1px solid rgba(23, 26, 25, 0.22);
+}
+
+.lost-found-map .warehouse {
+  position: absolute;
+  left: 6%;
+  bottom: 25%;
+  width: 34%;
+  height: 40%;
+  background: #d8c5a1;
+  border: 4px solid #172326;
+}
+
+.lost-found-map .warehouse::before {
+  content: "";
+  position: absolute;
+  inset: -28% -8% auto;
+  height: 30%;
+  background: repeating-linear-gradient(90deg, #d95232 0 28px, #ead9b8 28px 56px);
+  border: 4px solid #172326;
+}
+
+.lost-found-map .ferry {
+  position: absolute;
+  right: 4%;
+  bottom: 31%;
+  width: 42%;
+  height: 20%;
+  background: #e6dfcb;
+  clip-path: polygon(0 0, 100% 0, 86% 100%, 12% 100%);
+  border-bottom: 7px solid #172326;
+}
+
+.lost-found-map .crate {
+  position: absolute;
+  width: 16%;
+  height: 19%;
+  background:
+    linear-gradient(90deg, transparent 46%, #57402f 47% 53%, transparent 54%),
+    linear-gradient(transparent 46%, #57402f 47% 53%, transparent 54%),
+    #8f6242;
+  border: 3px solid #172326;
+}
+
+.lost-found-map .crate-a { left: 46%; bottom: 6%; }
+.lost-found-map .crate-b { left: 64%; bottom: 9%; transform: scale(.82); }
+
+.lost-found-map .object {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 3px solid #172326;
+  border-radius: 50%;
+  background: #f4efe3;
+  color: #d95232;
+  font-size: 15px;
+  font-weight: 950;
+  box-shadow: 3px 3px 0 rgba(23, 35, 38, 0.28);
+}
+
+.lost-found-map .object-a { left: 20%; top: 47%; }
+.lost-found-map .object-b { left: 57%; top: 22%; }
+.lost-found-map .object-c { right: 10%; bottom: 8%; }
+
+.lost-found-map .search-ring {
+  position: absolute;
+  left: 53%;
+  top: 17%;
+  width: 56px;
+  height: 56px;
+  border: 4px solid #f3d45d;
+  border-radius: 50%;
+  animation: portal-search-ring 1.15s ease-in-out infinite alternate;
+}
+
+@keyframes portal-search-ring {
+  from { transform: scale(.82); opacity: .55; }
+  to { transform: scale(1.12); opacity: 1; }
+}
