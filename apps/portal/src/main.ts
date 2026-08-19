@@ -1,5 +1,7 @@
 import "./style.css";
+import "./game-cards.css";
 import catalogData from "../../../catalog/games.json";
+import catalogOverrides from "../../../catalog/overrides.json";
 import {
   formatGameId,
   getCompletedGameCount,
@@ -21,7 +23,11 @@ interface CatalogEntry {
   path: string | null;
 }
 
-const catalog = catalogData as CatalogEntry[];
+const baseCatalog = catalogData as CatalogEntry[];
+const overrideMap = new Map(
+  (catalogOverrides as CatalogEntry[]).map((entry) => [entry.id, entry])
+);
+const catalog = baseCatalog.map((entry) => overrideMap.get(entry.id) ?? entry);
 const appRootCandidate = document.querySelector<HTMLDivElement>("#app");
 
 if (!appRootCandidate) {
@@ -45,10 +51,7 @@ let selectedCategory = "All";
 let searchQuery = "";
 
 function gameHref(game: CatalogEntry): string {
-  if (!game.path) {
-    return "#catalog";
-  }
-  return `${base}${game.path}`;
+  return game.path ? `${base}${game.path}` : "#catalog";
 }
 
 function escapeHtml(value: string): string {
@@ -65,11 +68,37 @@ function escapeHtml(value: string): string {
   );
 }
 
+function dailyArtwork(game: CatalogEntry): string {
+  if (game.id === 2) {
+    return `
+      <div class="lost-found-map" aria-hidden="true">
+        <span class="warehouse"></span>
+        <span class="ferry"></span>
+        <span class="crate crate-a"></span>
+        <span class="crate crate-b"></span>
+        <span class="object object-a">⌕</span>
+        <span class="object object-b">⌁</span>
+        <span class="object object-c">✦</span>
+        <span class="search-ring"></span>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="signal-map" aria-hidden="true">
+      <span class="route route-a"></span>
+      <span class="route route-b"></span>
+      <span class="buoy buoy-a">→</span>
+      <span class="buoy buoy-b">↑</span>
+      <span class="boat">▲</span>
+      <span class="harbor">H</span>
+    </div>
+  `;
+}
+
 function renderCatalog(): void {
   const list = document.querySelector<HTMLDivElement>("#game-list");
-  if (!list) {
-    return;
-  }
+  if (!list) return;
 
   const normalized = searchQuery.trim().toLowerCase();
   const filtered = catalog.filter((game) => {
@@ -121,12 +150,10 @@ function renderCatalog(): void {
       const game = catalog.find(
         (entry) => String(entry.id) === row.dataset.gameId
       );
-
       if (!game || game.status !== "playable") {
         event.preventDefault();
         return;
       }
-
       track("portal_game_click", {
         game_id: game.slug,
         source: "catalog"
@@ -161,8 +188,8 @@ function render(): void {
             <span class="eyebrow">ONE HUNDRED ORIGINAL BROWSER GAMES</span>
             <h1>하루 5분,<br />게임 <em>100개.</em></h1>
             <p>
-              설치와 로그인 없이 바로 시작합니다. 짧은 퍼즐부터 코지,
-              전략, 로컬 2인용까지 한 포털에서 이어집니다.
+              설치와 로그인 없이 바로 시작합니다. 한 번에 이해되는 규칙,
+              제목과 연결된 장면, 짧지만 다시 해보고 싶은 게임을 만듭니다.
             </p>
           </div>
 
@@ -171,14 +198,7 @@ function render(): void {
               <span>TODAY'S GAME</span>
               <strong>${formatGameId(dailyGame.id)}</strong>
             </div>
-            <div class="signal-map" aria-hidden="true">
-              <span class="route route-a"></span>
-              <span class="route route-b"></span>
-              <span class="buoy buoy-a">→</span>
-              <span class="buoy buoy-b">↑</span>
-              <span class="boat">▲</span>
-              <span class="harbor">H</span>
-            </div>
+            ${dailyArtwork(dailyGame)}
             <div class="daily-copy">
               <p>${escapeHtml(dailyGame.category)} · ${escapeHtml(dailyGame.duration)}</p>
               <h2>${escapeHtml(dailyGame.title)}</h2>

@@ -3,7 +3,8 @@ import { rmSync } from "node:fs";
 
 const jobs = [
   ["@play100/portal", "build"],
-  ["@play100/game-001-arrow-harbor", "build"]
+  ["@play100/game-001-arrow-harbor", "build"],
+  ["@play100/game-002-harbor-lost-found", "build"]
 ];
 
 rmSync("dist", { recursive: true, force: true });

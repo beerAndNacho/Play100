@@ -1,0 +1,13 @@
+[
+  {
+    "id": 2,
+    "slug": "002-harbor-lost-found",
+    "title": "Harbor Lost & Found",
+    "category": "Hidden Object",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "2–6 min",
+    "description": "어시장·창고·부두에 숨은 분실물을 클릭과 탭으로 찾습니다.",
+    "path": "games/002-harbor-lost-found/"
+  }
+]
