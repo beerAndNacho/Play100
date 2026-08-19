@@ -1,13 +1,25 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
-const catalog = JSON.parse(readFileSync("catalog/games.json", "utf8"));
+const baseCatalog = JSON.parse(readFileSync("catalog/games.json", "utf8"));
+const overrides = JSON.parse(readFileSync("catalog/overrides.json", "utf8"));
 
-if (!Array.isArray(catalog) || catalog.length !== 100) {
-  throw new Error(`Expected exactly 100 games, received ${catalog.length}`);
+if (!Array.isArray(baseCatalog) || baseCatalog.length !== 100) {
+  throw new Error(`Expected exactly 100 base games, received ${baseCatalog.length}`);
+}
+if (!Array.isArray(overrides)) {
+  throw new Error("Catalog overrides must be an array.");
 }
 
+const overrideById = new Map(overrides.map((entry) => [entry.id, entry]));
+const catalog = baseCatalog.map((entry) => overrideById.get(entry.id) ?? entry);
 const ids = new Set();
 const slugs = new Set();
+
+for (const override of overrides) {
+  if (!baseCatalog.some((entry) => entry.id === override.id)) {
+    throw new Error(`Override targets missing game id: ${override.id}`);
+  }
+}
 
 for (const game of catalog) {
   if (!Number.isInteger(game.id) || game.id < 1 || game.id > 100) {
@@ -36,8 +48,18 @@ for (let id = 1; id <= 100; id += 1) {
 }
 
 const playable = catalog.filter((game) => game.status === "playable");
-if (playable.length !== 1 || playable[0].id !== 1 || !playable[0].path) {
-  throw new Error("GAME-001 must be the only playable launch title.");
+const playableIds = playable.map((game) => game.id).sort((a, b) => a - b);
+if (playableIds.join(",") !== "1,2") {
+  throw new Error(`Expected GAME-001 and GAME-002 playable, received ${playableIds.join(",")}`);
 }
 
-console.log(`catalog ok: ${catalog.length} unique games`);
+for (const game of playable) {
+  if (!game.path) {
+    throw new Error(`Playable game is missing path: ${game.id}`);
+  }
+  if (!existsSync(`games/${game.slug}/package.json`)) {
+    throw new Error(`Playable workspace is missing: games/${game.slug}`);
+  }
+}
+
+console.log(`catalog ok: ${catalog.length} unique games, ${playable.length} playable`);
