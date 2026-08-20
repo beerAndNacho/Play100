@@ -1,0 +1,14 @@
+{
+  "id": 3,
+  "slug": "003-lightkeeper",
+  "title": "Lightkeeper",
+  "status": "playable",
+  "themePromise": "등대지기가 거울탑을 회전시켜 새벽 해협·안개 군도·폭풍 항구의 모든 항로 비콘에 빛을 전달한다.",
+  "mechanicsToTheme": "퍼즐 타일은 실제 거울탑이며, 회전은 반사각 조절, 힌트는 등대 탐조등, 성공은 모든 비콘 점등과 안전 입항으로 표현한다.",
+  "coreVerbs": ["rotate mirror tower", "trace lighthouse beam", "energize navigation beacon", "repair dark route"],
+  "signatureObjects": ["lighthouse lantern room", "rotating mirror tower", "navigation beacon", "reef silhouette", "cliff face", "cargo vessel", "fog bank", "rain streak", "beam prism", "harbor signal board"],
+  "environments": ["dawn strait", "mist archipelago", "storm harbor", "festival night port", "eclipse emergency route"],
+  "feedback": ["live reflected beam", "mirror rotation motion", "beacon glow", "fog and rain animation", "wrong path warning", "success flare", "medal report", "distinct rotate hint and solve sounds"],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {"onboardingSeconds": 12, "firstSuccessSeconds": 90, "restartSeconds": 1, "sessionMinutes": "3-8", "replayMotivators": ["five coastal environments", "minimum rotations", "medal score", "daily light chart"]}
+}
