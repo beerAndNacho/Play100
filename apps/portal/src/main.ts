@@ -118,7 +118,7 @@ function dailyArtwork(game: CatalogEntry): string {
     party: ["1P", "VS", "2P"],
     story: ["…", "?", "→"]
   };
-  const marks = symbols[family] ?? symbols.logic;
+  const marks = symbols[family] ?? symbols.logic!;
   return `
     <div class="factory-art family-${family}" aria-hidden="true">
       <span class="factory-grid"></span>
