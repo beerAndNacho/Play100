@@ -1,0 +1,110 @@
+.factory-art {
+  position: relative;
+  min-height: 252px;
+  overflow: hidden;
+  border-top: 1px solid rgba(23, 26, 25, 0.22);
+  border-bottom: 1px solid rgba(23, 26, 25, 0.22);
+  background: #14212a;
+  color: #f5efe2;
+  isolation: isolate;
+}
+
+.factory-art::before,
+.factory-art::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: .55;
+}
+
+.factory-art::before {
+  width: 210px;
+  height: 210px;
+  left: -64px;
+  bottom: -84px;
+  background: var(--family-a, #ef6b3a);
+}
+
+.factory-art::after {
+  width: 260px;
+  height: 260px;
+  right: -116px;
+  top: -116px;
+  border: 38px solid var(--family-b, #4dd7dd);
+}
+
+.factory-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  transform: perspective(420px) rotateX(55deg) scale(1.4) translateY(38px);
+  transform-origin: bottom;
+}
+
+.factory-orb {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border: 3px solid #171a19;
+  background: #f5efe2;
+  color: #171a19;
+  font-weight: 950;
+  font-size: 22px;
+  box-shadow: 7px 7px 0 rgba(0,0,0,.25);
+  animation: factory-float 2.6s ease-in-out infinite alternate;
+}
+.factory-orb.orb-a { left: 12%; top: 24%; border-radius: 50%; }
+.factory-orb.orb-b { left: 43%; top: 48%; animation-delay: -.8s; transform: rotate(8deg); }
+.factory-orb.orb-c { right: 10%; top: 18%; animation-delay: -1.5s; border-radius: 14px; }
+.factory-id {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 950;
+  color: rgba(255,255,255,.18);
+}
+.factory-title {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  max-width: 62%;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.family-spatial { --family-a:#ef6b3a; --family-b:#e9c46a; }
+.family-arcade { --family-a:#17c3e8; --family-b:#ff4d8d; background:#07162a; }
+.family-word { --family-a:#f4c34f; --family-b:#cf6ae5; background:#211a24; }
+.family-cozy { --family-a:#7ad89b; --family-b:#efaa7b; background:#183027; }
+.family-management { --family-a:#ff8c42; --family-b:#54a8d8; background:#16222c; }
+.family-strategy { --family-a:#df596d; --family-b:#d4b04c; background:#241821; }
+.family-deck { --family-a:#a98cff; --family-b:#50c8a3; background:#18162a; }
+.family-party { --family-a:#50e3a4; --family-b:#ff5b73; background:#101d27; }
+.family-story { --family-a:#f08f73; --family-b:#8ca8ff; background:#211b23; }
+.family-logic { --family-a:#4dd7dd; --family-b:#e6c45a; }
+
+@keyframes factory-float {
+  from { translate: 0 -3px; rotate: -2deg; }
+  to { translate: 0 7px; rotate: 3deg; }
+}
+
+@media (max-width: 640px) {
+  .factory-art { min-height: 220px; }
+  .factory-orb { width: 56px; height: 56px; font-size: 18px; }
+  .factory-id { font-size: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .factory-orb { animation: none; }
+}
