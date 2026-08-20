@@ -1,0 +1,14 @@
+{
+  "id": 9,
+  "slug": "009-pipe-garden",
+  "title": "Pipe Garden",
+  "status": "playable",
+  "themePromise": "정원사가 흙 속 관 타일을 돌려 우물의 물을 모든 화분과 과수까지 보내고 누수 없는 관개망을 완성한다.",
+  "mechanicsToTheme": "타일 회전은 관 이음쇠 조정, 파란 선은 실제 흐르는 물, 실패는 누수 경보, 성공은 화분이 피고 정원 일지가 완료되는 연출로 표현한다.",
+  "coreVerbs": ["rotate irrigation tile", "trace water flow", "inspect leaks", "bloom every plant"],
+  "signatureObjects": ["stone well source", "terracotta planter", "underground pipe elbow", "tee junction", "water droplet", "greenhouse roof", "rooftop herb bed", "desert conservatory", "moon water garden", "autumn orchard"],
+  "environments": ["morning glasshouse", "rainy rooftop herb garden", "desert conservatory", "moonlit water garden", "autumn orchard"],
+  "feedback": ["pipe rotates on tap", "connected pipes glow blue", "leaking tile pulses red", "plants bloom when watered", "flow count and leak count", "watering success chime", "garden medal report", "environment-specific garden label"],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {"onboardingSeconds": 10, "firstSuccessSeconds": 80, "restartSeconds": 1, "sessionMinutes": "3-8", "replayMotivators": ["five irrigation plans", "minimum rotations", "hint-free score", "garden medals"]}
+}
