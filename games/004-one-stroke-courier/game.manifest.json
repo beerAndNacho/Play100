@@ -1,0 +1,14 @@
+{
+  "id": 4,
+  "slug": "004-one-stroke-courier",
+  "title": "One-Stroke Courier",
+  "status": "playable",
+  "themePromise": "도시 자전거 배달원이 시장·빗길·운하·축제·산업부두의 모든 도로를 한 번씩만 달려 소포를 전달하고 종착 고객에게 도착한다.",
+  "mechanicsToTheme": "한붓그리기 간선은 실제 골목과 다리이며, 노드 선택은 다음 배송지 결정, 되돌리기는 경로 수정, 성공은 배달 완료 보고서로 표현한다.",
+  "coreVerbs": ["choose next street", "deliver parcels", "avoid reused roads", "repair blocked route"],
+  "signatureObjects": ["courier bicycle", "parcel satchel", "dispatch depot", "market stall", "bakery delivery", "rainy alley", "canal bridge", "festival lantern", "industrial crane", "customs document", "street route card", "customer doorstep"],
+  "environments": ["sunny morning market", "rainy old town", "canal district", "night lantern festival", "foggy industrial dock"],
+  "feedback": ["animated red route trail", "moving bicycle courier", "parcel pickup and delivery check", "invalid street camera shake", "hint destination pulse", "rain lantern canal and crane environment animation", "street and parcel counters", "delivery medal report"],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {"onboardingSeconds": 12, "firstSuccessSeconds": 95, "restartSeconds": 1, "sessionMinutes": "3-8", "replayMotivators": ["time medals", "zero-mistake routes", "five city districts", "daily route"]}
+}
