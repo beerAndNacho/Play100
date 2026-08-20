@@ -1,22 +1,56 @@
 import { spawnSync } from "node:child_process";
-import { rmSync } from "node:fs";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync
+} from "node:fs";
+import { resolve } from "node:path";
 
-const jobs = [
-  ["@play100/portal", "build"],
-  ["@play100/game-001-arrow-harbor", "build"],
-  ["@play100/game-002-harbor-lost-found", "build"]
+const root = process.cwd();
+const candidates = [
+  ["@play100/portal", "apps/portal/package.json"],
+  ["@play100/game-001-arrow-harbor", "games/001-arrow-harbor/package.json"],
+  ["@play100/game-002-harbor-lost-found", "games/002-harbor-lost-found/package.json"],
+  ["@play100/game-003-lightkeeper", "games/003-lightkeeper/package.json"],
+  ["@play100/game-004-one-stroke-courier", "games/004-one-stroke-courier/package.json"],
+  ["@play100/game-005-color-customs", "games/005-color-customs/package.json"]
 ];
 
-rmSync("dist", { recursive: true, force: true });
+rmSync(resolve(root, "dist"), { recursive: true, force: true });
 
-for (const [workspace, script] of jobs) {
+for (const [workspace, packagePath] of candidates) {
+  if (!existsSync(resolve(root, packagePath))) continue;
+  const metadata = JSON.parse(readFileSync(resolve(root, packagePath), "utf8"));
+  if (!metadata.scripts?.build) continue;
   const result = spawnSync(
     process.platform === "win32" ? "npm.cmd" : "npm",
-    ["run", script, "--workspace", workspace],
-    { stdio: "inherit" }
+    ["run", "build", "--workspace", workspace],
+    { cwd: root, stdio: "inherit" }
   );
-
-  if (result.status !== 0) {
-    process.exit(result.status ?? 1);
-  }
+  if (result.status !== 0) process.exit(result.status ?? 1);
 }
+
+const packedGames = [
+  "006-tiny-detective-grid",
+  "007-bridge-count",
+  "008-clockwork-repair",
+  "009-pipe-garden",
+  "010-daily-clue-board"
+];
+mkdirSync(resolve(root, "dist/games/packs"), { recursive: true });
+for (const slug of packedGames) {
+  const target = resolve(root, "dist/games", slug);
+  mkdirSync(target, { recursive: true });
+  copyFileSync(resolve(root, "games", slug, "index.html"), resolve(target, "index.html"));
+  copyFileSync(resolve(root, "games/packs", `${slug}.js`), resolve(root, "dist/games/packs", `${slug}.js`));
+}
+
+const factory = spawnSync(process.execPath, ["scripts/generate-factory-pages.mjs"], {
+  cwd: root,
+  stdio: "inherit"
+});
+if (factory.status !== 0) process.exit(factory.status ?? 1);
+
+console.log("PLAY100 build complete: portal and GAME-001 through GAME-100");
