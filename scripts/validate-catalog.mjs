@@ -49,8 +49,11 @@ for (let id = 1; id <= 100; id += 1) {
 
 const playable = catalog.filter((game) => game.status === "playable");
 const playableIds = playable.map((game) => game.id).sort((a, b) => a - b);
-if (playableIds.join(",") !== "1,2") {
-  throw new Error(`Expected GAME-001 and GAME-002 playable, received ${playableIds.join(",")}`);
+const expectedPlayableIds = Array.from({ length: 10 }, (_, index) => index + 1);
+if (playableIds.join(",") !== expectedPlayableIds.join(",")) {
+  throw new Error(
+    `Expected GAME-001 through GAME-010 playable, received ${playableIds.join(",")}`
+  );
 }
 
 for (const game of playable) {
@@ -59,6 +62,12 @@ for (const game of playable) {
   }
   if (!existsSync(`games/${game.slug}/package.json`)) {
     throw new Error(`Playable workspace is missing: games/${game.slug}`);
+  }
+  if (game.id >= 6 && !existsSync(`games/${game.slug}/index.html`)) {
+    throw new Error(`Static loader is missing: games/${game.slug}/index.html`);
+  }
+  if (game.id >= 6 && !existsSync(`games/packs/${game.slug}.js`)) {
+    throw new Error(`Packed runtime is missing: games/packs/${game.slug}.js`);
   }
 }
 
