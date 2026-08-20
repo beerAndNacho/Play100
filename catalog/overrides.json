@@ -9,5 +9,93 @@
     "duration": "2–6 min",
     "description": "어시장·창고·부두에 숨은 분실물을 클릭과 탭으로 찾습니다.",
     "path": "games/002-harbor-lost-found/"
+  },
+  {
+    "id": 3,
+    "slug": "003-lightkeeper",
+    "title": "Lightkeeper",
+    "category": "Optical Logic",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "3–8 min",
+    "description": "거울탑을 돌려 등대의 빛을 모든 항로 비콘에 전달합니다.",
+    "path": "games/003-lightkeeper/"
+  },
+  {
+    "id": 4,
+    "slug": "004-one-stroke-courier",
+    "title": "One-Stroke Courier",
+    "category": "Route Logic",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "3–8 min",
+    "description": "도시의 모든 도로를 한 번씩만 달리며 소포를 배달합니다.",
+    "path": "games/004-one-stroke-courier/"
+  },
+  {
+    "id": 5,
+    "slug": "005-color-customs",
+    "title": "Color Customs",
+    "category": "Inspection",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "2–6 min",
+    "description": "컨테이너 색상·봉인·중량을 검사해 세관 게이트로 분류합니다.",
+    "path": "games/005-color-customs/"
+  },
+  {
+    "id": 6,
+    "slug": "006-tiny-detective-grid",
+    "title": "Tiny Detective Grid",
+    "category": "Deduction",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "3–8 min",
+    "description": "단서를 교차해 용의자·장소·시간의 정답 조합을 밝힙니다.",
+    "path": "games/006-tiny-detective-grid/"
+  },
+  {
+    "id": 7,
+    "slug": "007-bridge-count",
+    "title": "Bridge Count",
+    "category": "Network Logic",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "3–8 min",
+    "description": "섬의 숫자만큼 다리를 놓아 모든 섬을 하나의 군도로 연결합니다.",
+    "path": "games/007-bridge-count/"
+  },
+  {
+    "id": 8,
+    "slug": "008-clockwork-repair",
+    "title": "Clockwork Repair",
+    "category": "Mechanical Logic",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "3–8 min",
+    "description": "축 간격에 맞는 기어를 골라 고장 난 시계 장치를 복원합니다.",
+    "path": "games/008-clockwork-repair/"
+  },
+  {
+    "id": 9,
+    "slug": "009-pipe-garden",
+    "title": "Pipe Garden",
+    "category": "Flow Logic",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "3–8 min",
+    "description": "관 타일을 회전해 우물의 물을 모든 식물에 공급합니다.",
+    "path": "games/009-pipe-garden/"
+  },
+  {
+    "id": 10,
+    "slug": "010-daily-clue-board",
+    "title": "Daily Clue Board",
+    "category": "Daily Mystery",
+    "status": "playable",
+    "mode": "Solo",
+    "duration": "1–5 min",
+    "description": "오늘의 사건을 가능한 한 적은 단서로 해결하고 기록을 공유합니다.",
+    "path": "games/010-daily-clue-board/"
   }
 ]
