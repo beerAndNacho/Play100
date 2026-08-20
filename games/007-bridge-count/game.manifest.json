@@ -1,0 +1,14 @@
+{
+  "id": 7,
+  "slug": "007-bridge-count",
+  "title": "Bridge Count",
+  "status": "playable",
+  "themePromise": "수로 측량사가 숫자가 적힌 섬 사이에 한두 개의 다리를 놓아 모든 섬을 하나의 안전한 군도로 연결한다.",
+  "mechanicsToTheme": "섬 숫자는 필요한 교량 수, 선 선택은 측량 명령, 교차 검사는 항로 충돌 경보, 성공은 해도 승인 보고서로 표현한다.",
+  "coreVerbs": ["select islands", "cycle bridge count", "inspect island totals", "connect entire archipelago"],
+  "signatureObjects": ["numbered sand islands", "single timber bridge", "double timber bridge", "hydrographic chart", "coral lagoon", "lighthouse island", "volcanic tide", "ice fjord", "survey logbook", "route approval stamp"],
+  "environments": ["sunrise sand shoal", "coral lagoon", "misty lighthouse crossing", "volcanic island chain", "arctic ice fjord"],
+  "feedback": ["selected island beacon", "satisfied island turns green", "bridge drawing animation", "crossing warning shake", "route connectivity report", "medal approval report", "wave motion background", "distinct select fail and success sounds"],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {"onboardingSeconds": 10, "firstSuccessSeconds": 75, "restartSeconds": 1, "sessionMinutes": "3-8", "replayMotivators": ["five chart layouts", "minimum bridge moves", "medal score", "best survey record"]}
+}
