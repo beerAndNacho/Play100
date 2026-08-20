@@ -1,0 +1,14 @@
+{
+  "id": 6,
+  "slug": "006-tiny-detective-grid",
+  "title": "Tiny Detective Grid",
+  "status": "playable",
+  "themePromise": "미니 탐정 사무실의 증거판에서 용의자·장소·시간 단서를 교차해 다섯 개 사건의 정답 조합을 밝혀낸다.",
+  "mechanicsToTheme": "세 열의 선택지는 실제 수사 분류표이며, 힌트는 봉인된 증거 메모, 정답 제출은 공식 추리 보고서와 사건 종결 도장으로 표현한다.",
+  "coreVerbs": ["read evidence notes", "select suspect place and time", "submit deduction", "manage hints and strikes"],
+  "signatureObjects": ["confidential case file", "red string evidence board", "mugshot cards", "map pin", "pocket watch time cards", "fingerprint note", "evidence stamp", "rainy crime scene photo", "magnifying glass status", "case closure report"],
+  "environments": ["rain museum at closing time", "last train platform at night", "glass rooftop garden", "night market blackout", "dawn rooftop apiary"],
+  "feedback": ["selected evidence card stamp", "new clue pin animation", "wrong deduction board shake", "strike counter", "case closed medal report", "scene and case transition", "audio cue for select fail and solve", "best score archive"],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {"onboardingSeconds": 12, "firstSuccessSeconds": 90, "restartSeconds": 1, "sessionMinutes": "3-8", "replayMotivators": ["five distinct cases", "minimum-clue score", "gold-silver-bronze medals", "best case score"]}
+}
