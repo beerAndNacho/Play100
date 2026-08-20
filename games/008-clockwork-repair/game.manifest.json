@@ -1,0 +1,14 @@
+{
+  "id": 8,
+  "slug": "008-clockwork-repair",
+  "title": "Clockwork Repair",
+  "status": "playable",
+  "themePromise": "시계 수리공이 축 거리표와 톱니 수를 읽어 빠진 기어를 장착하고 회전 방향과 최종 속도를 복원한다.",
+  "mechanicsToTheme": "선택 버튼은 예비 기어함, 숫자 합은 실제 축 간격, 시험 버튼은 태엽 감기, 성공은 시계판과 기어가 함께 회전하는 정비 완료로 표현한다.",
+  "coreVerbs": ["choose spare gear", "fit gear into missing axle", "test tooth span", "restore clock movement"],
+  "signatureObjects": ["brass gear train", "tooth count plate", "axle spacing gauge", "pocket watch face", "station clock order", "orrery drive", "music box cylinder", "tower chime", "repair ticket", "horologist workbench"],
+  "environments": ["ivory pocket watch bench", "iron railway clock workshop", "night observatory mechanism", "velvet music box cabinet", "stone bell tower"],
+  "feedback": ["gear size changes visually", "selected spare gear highlight", "jam report for wrong span", "rotating gears on success", "clock hands start moving", "three-note chime", "attempt counter", "repair medal report"],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {"onboardingSeconds": 12, "firstSuccessSeconds": 90, "restartSeconds": 1, "sessionMinutes": "3-8", "replayMotivators": ["five clock mechanisms", "fewer-attempt score", "medal record", "different gear constraints"]}
+}
