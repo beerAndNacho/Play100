@@ -1,8 +1,6 @@
 import { spawnSync } from "node:child_process";
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { gunzipSync } from "node:zlib";
-import vm from "node:vm";
 
 const root = process.cwd();
 const generated = spawnSync("python3", ["scripts/generate-factory-config.py"], {
@@ -93,27 +91,6 @@ for (let id = 11; id <= 100; id += 1) {
 if (families.size !== 9) errors.push(`Expected 9 game families, received ${families.size}`);
 for (const [family, count] of families) {
   if (count !== 10) errors.push(`${family}: expected 10 games, received ${count}`);
-}
-
-const engineBase64 = readdirSync(resolve(root, "games/factory/engine-parts"))
-  .filter((name) => /^part-\d+$/.test(name))
-  .sort((a, b) => Number(a.slice(5)) - Number(b.slice(5)))
-  .map((name) => readFileSync(resolve(root, "games/factory/engine-parts", name), "utf8").trim())
-  .join("");
-try {
-  const engine = gunzipSync(Buffer.from(engineBase64, "base64")).toString("utf8");
-  new vm.Script(engine, { filename: "factory-engine.js" });
-  if (engine.length < 30000) errors.push("Factory engine is unexpectedly small");
-} catch (error) {
-  errors.push(`Factory engine archive is invalid: ${error.message}`);
-}
-try {
-  const style = gunzipSync(
-    Buffer.from(readFileSync(resolve(root, "games/factory/style.css.gz.b64"), "utf8").trim(), "base64")
-  ).toString("utf8");
-  if (style.length < 5000) errors.push("Factory stylesheet is unexpectedly small");
-} catch (error) {
-  errors.push(`Factory style archive is invalid: ${error.message}`);
 }
 
 if (errors.length) {

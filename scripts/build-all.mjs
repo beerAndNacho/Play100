@@ -47,10 +47,23 @@ for (const slug of packedGames) {
   copyFileSync(resolve(root, "games/packs", `${slug}.js`), resolve(root, "dist/games/packs", `${slug}.js`));
 }
 
-const factory = spawnSync(process.execPath, ["scripts/generate-factory-pages.mjs"], {
-  cwd: root,
-  stdio: "inherit"
-});
-if (factory.status !== 0) process.exit(factory.status ?? 1);
+const prototypeBuild = spawnSync(
+  process.execPath,
+  ["prototype-v2/build-games.mjs", resolve(root, "dist")],
+  { cwd: root, stdio: "inherit" }
+);
+if (prototypeBuild.status !== 0) process.exit(prototypeBuild.status ?? 1);
 
-console.log("PLAY100 build complete: portal and GAME-001 through GAME-100");
+const enhanceCatalog = spawnSync(
+  process.execPath,
+  ["prototype-v2/enhance-catalog.mjs", resolve(root, "dist/v2/catalog.js")],
+  { cwd: root, stdio: "inherit" }
+);
+if (enhanceCatalog.status !== 0) process.exit(enhanceCatalog.status ?? 1);
+
+copyFileSync(
+  resolve(root, "prototype-v2/engine-v3.js"),
+  resolve(root, "dist/v2/engine.js")
+);
+
+console.log("PLAY100 build complete: title-specific GAME-001 through GAME-100");
