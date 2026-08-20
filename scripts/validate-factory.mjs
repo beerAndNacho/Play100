@@ -97,7 +97,7 @@ for (const [family, count] of families) {
 
 const engineBase64 = readdirSync(resolve(root, "games/factory/engine-parts"))
   .filter((name) => /^part-\d+$/.test(name))
-  .sort()
+  .sort((a, b) => Number(a.slice(5)) - Number(b.slice(5)))
   .map((name) => readFileSync(resolve(root, "games/factory/engine-parts", name), "utf8").trim())
   .join("");
 try {

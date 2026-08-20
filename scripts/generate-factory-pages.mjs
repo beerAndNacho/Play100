@@ -23,7 +23,7 @@ mkdirSync(distFactory, { recursive: true });
 
 const engineBase64 = readdirSync(resolve(factoryDir, "engine-parts"))
   .filter((name) => /^part-\d+$/.test(name))
-  .sort()
+  .sort((a, b) => Number(a.slice(5)) - Number(b.slice(5)))
   .map((name) => readFileSync(resolve(factoryDir, "engine-parts", name), "utf8").trim())
   .join("");
 const engine = gunzipSync(Buffer.from(engineBase64, "base64")).toString("utf8");

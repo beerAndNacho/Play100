@@ -156,7 +156,7 @@ out=[]
 for id_,slug,title,family,variant,desc,materials_str,unique_env in rows:
     fam=families[family]
     materials=[x.strip() for x in materials_str.split(',')]
-    signatures=(materials+fam['defaults'])[:10]
+    signatures=list(dict.fromkeys(materials+fam['defaults']))[:10]
     while len(signatures)<8: signatures.append(f'{title} 전용 장치 {len(signatures)+1}')
     envs=[unique_env]+fam['envs']
     theme=f"{fam['role']}가 {desc} 제목에 등장하는 장소와 사물을 실제 조작 대상으로 사용하며 점수와 환경 변화를 통해 임무를 완수한다."
