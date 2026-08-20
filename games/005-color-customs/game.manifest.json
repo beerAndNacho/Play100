@@ -1,0 +1,14 @@
+{
+  "id": 5,
+  "slug": "005-color-customs",
+  "title": "Color Customs",
+  "status": "playable",
+  "themePromise": "항만 세관원이 컨테이너의 실제 색상·신고 색상·봉인·중량·위험물 표식을 검사해 통관·정밀검사·보류·반송 게이트로 빠르게 분류한다.",
+  "mechanicsToTheme": "색상 분류 퍼즐의 카드는 실제 화물 명세와 컨테이너이며, 선택 버튼은 세관 게이트, 힌트는 규정 안내, 성공은 근무 보고서로 표현한다.",
+  "coreVerbs": ["inspect cargo manifest", "compare color and seal", "route container to gate", "build customs combo"],
+  "signatureObjects": ["shipping container", "customs manifest", "color declaration", "security seal", "weighbridge reading", "hazard placard", "x-ray scanner arch", "customs stamp", "container crane", "ferry terminal", "inspection gate", "quarantine warning light"],
+  "environments": ["sunrise container yard", "rain automation terminal", "night x-ray hall", "international ferry customs", "storm quarantine dock"],
+  "feedback": ["container color face", "customs stamp animation", "combo and score escalation", "wrong classification shake and time penalty", "correct gate hint pulse", "scanner crane rain and warning environment animation", "gate cargo counters", "customs shift medal report"],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {"onboardingSeconds": 13, "firstSuccessSeconds": 70, "restartSeconds": 1, "sessionMinutes": "2-6", "replayMotivators": ["perfect classification medals", "combo high score", "five rule shifts", "daily customs shift"]}
+}
