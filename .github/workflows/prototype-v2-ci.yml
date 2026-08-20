@@ -1,0 +1,38 @@
+name: Prototype V2 CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'prototype-v2/**'
+      - '.github/workflows/prototype-v2-ci.yml'
+  pull_request:
+    paths:
+      - 'prototype-v2/**'
+      - '.github/workflows/prototype-v2-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax check
+        run: |
+          node --check prototype-v2/engine.js
+          node --check prototype-v2/build-games.mjs
+      - name: Generate 100-game site
+        run: node prototype-v2/build-games.mjs /tmp/play100-v2
+      - name: Validate output
+        run: |
+          test -s /tmp/play100-v2/index.html
+          test -s /tmp/play100-v2/v2/catalog.js
+          test -s /tmp/play100-v2/v2/engine.js
+          test -s /tmp/play100-v2/games/006-tiny-detective-grid/index.html
+          test -s /tmp/play100-v2/games/050-pocket-observatory/index.html
+          test -s /tmp/play100-v2/games/100-the-hundredth-door/index.html
+          test "$(find /tmp/play100-v2/games -mindepth 2 -maxdepth 2 -name index.html | wc -l)" -eq 95
+          grep -q 'window.PLAY100_CATALOG=' /tmp/play100-v2/v2/catalog.js
