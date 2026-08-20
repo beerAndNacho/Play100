@@ -1,0 +1,14 @@
+{
+  "id": 10,
+  "slug": "010-daily-clue-board",
+  "title": "Daily Clue Board",
+  "status": "playable",
+  "themePromise": "신문의 오늘 사건을 한 장씩 공개되는 단서로 풀고 가능한 한 적은 단서만 사용해 매일 추리 기록과 연속 해결 일수를 쌓는다.",
+  "mechanicsToTheme": "단서 공개는 증거 봉인 해제, 답 선택은 용의자 카드 잠금, 결과 복사는 정답을 숨긴 신문 공유판, 성공은 CASE CLOSED 기사로 표현한다.",
+  "coreVerbs": ["reveal clue", "lock an answer", "submit daily deduction", "share spoiler-free result"],
+  "signatureObjects": ["daily newspaper front page", "cork clue board", "red evidence pin", "sealed clue card", "surveillance photograph", "suspect profile card", "case closed headline", "streak archive", "edition date line", "spoiler-free result dots"],
+  "environments": ["city records corridor", "last train platform", "rooftop greenhouse", "night market blackout", "snow island post office", "museum west gallery"],
+  "feedback": ["clue card reveal animation", "answer card locked stamp", "wrong answer shake", "score decreases with clues", "case closed medal", "daily streak counter", "copy result confirmation", "distinct clue fail and solve sounds"],
+  "input": ["mouse", "touch", "keyboard"],
+  "funLoop": {"onboardingSeconds": 8, "firstSuccessSeconds": 60, "restartSeconds": 1, "sessionMinutes": "1-5", "replayMotivators": ["daily seeded case", "streak counter", "minimum-clue score", "practice archive", "spoiler-free sharing"]}
+}
